@@ -1,5 +1,6 @@
 async function getTopPieces() {
 	const res = await fetch('https://www.rijksmuseum.nl/api/nl/collection?' + new URLSearchParams({
+		// Insert key here before running
 		key: '',
 		toppieces: 'True'
 	}));
