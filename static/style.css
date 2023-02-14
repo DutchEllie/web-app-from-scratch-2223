@@ -1,11 +1,11 @@
 @layer reset, defaults, components, overrides;
 
-@import url("/static/reset.css") layer(reset);
+@import url("static/reset.css") layer(reset);
 
 @layer defaults {
   @font-face {
     font-family: "Shin Go Pro Regular";
-    src: url("/static/G-OTF-GShinGoPro-Regular.otf");
+    src: url("static/G-OTF-GShinGoPro-Regular.otf");
   }
 
 	body {
