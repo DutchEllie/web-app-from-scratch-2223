@@ -218,3 +218,10 @@ async function displayTopPieces() {
 }
 
 displayTopPieces()
+
+// Remove the preload class from the body
+// This class is used to disable animations on the load
+// and is removed after 500 ms
+setTimeout(function(){
+    document.body.className="";
+},500);

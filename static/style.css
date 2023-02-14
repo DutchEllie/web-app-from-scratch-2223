@@ -249,6 +249,9 @@
 			opacity: 100;
 		}
 	}
+	.animate {
+		animation: pagefillerEntry 500ms ease-in-out;
+	}
 	.pagefiller {
 		position: absolute;
 		top: 0;

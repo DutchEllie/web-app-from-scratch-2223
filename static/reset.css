@@ -59,3 +59,12 @@ b, strong {
 /* html, body {
 	overflow-x: hidden;
 } */
+
+/* Disable animations on load
+We do this so the page does not animate on load
+*/
+body.preload *{
+	animation-duration: 0s !important;
+	-webkit-animation-duration: 0s !important;
+	transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
