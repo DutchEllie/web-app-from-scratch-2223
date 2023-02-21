@@ -31,28 +31,43 @@ export class ArtPage extends HTMLElement {
 		this.appendChild(this.artObjectLoader);
 		this.appendChild(this.loadingText);
 
-		const res = await getObjectFull(this.objectID)
 		try {
-			this.artObjectImage.src = res.artObject.webImage.url;
-		} catch (e) {
-			console.warn('Webimage appears undefined. Very sadge, falling back to localstorage\n' + e)
-			const localStorageArtObject = JSON.parse(window.localStorage.getItem('artobject'));
-			this.artObjectImage.src = localStorageArtObject.webImage.url;
-		}
-		this.artObjectImage.alt = res.artObject.title;
-		this.artObjectTitle.textContent = res.artObject.title;
-		this.artObjectDetails.innerHTML = 
-		`
-		<h3>Information</h3>
-		<p>
-		- Title:    ${res.artObject.title} <br>
-		- Artist:   ${res.artObject.principalOrFirstMaker} <br>
-		- Location: ${res.artObject.productionPlaces[0]} <br><br>
-		</p>
-		<h3>Description</h3>
-		<p>${res.artObject.description}</p>
-		`
+			const res = await getObjectFull(this.objectID)
+			try {
+				this.artObjectImage.src = res.artObject.webImage.url;
+			} catch (e) {
+				console.warn('Webimage appears undefined. Very sadge, falling back to localstorage\n' + e)
+				const localStorageArtObject = JSON.parse(window.localStorage.getItem('artobject'));
+				this.artObjectImage.src = localStorageArtObject.webImage.url;
+			}
+			this.artObjectImage.alt = res.artObject.title;
+			this.artObjectTitle.textContent = res.artObject.title;
+			this.artObjectDetails.innerHTML = 
+			`
+			<h3>Information</h3>
+			<ul>
+			<li>Title:    ${res.artObject.title}</li>
+			<li>Artist:   ${res.artObject.principalOrFirstMaker}</li>
+			<li>Location: ${res.artObject.productionPlaces[0]}</li>
+			</ul>
+			<h3>Description</h3>
+			<p>${res.artObject.description}</p>
+			`
 
+		} catch(e) {
+			console.error(e);
+			this.artObjectTitle.textContent = "Error loading data";
+			this.artObjectImage.src = '/static/error.jpg';
+			this.artObjectImage.alt = 'Error loading data: computer says no';
+			this.artObjectDetails.innerHTML = `
+			<h3>Information</h3>
+			<p>
+			- Title:		Computer says no <br>
+			- Source: 	Little Britain <br>
+			- Location: TV <br><br>
+			</p>
+			`
+		}
 		try {
 			this.removeChild(this.artObjectLoader);
 			this.removeChild(this.loadingText);

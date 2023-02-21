@@ -13,15 +13,26 @@ export class HomePage extends HTMLElement {
 	}
 
 	async fetchData() {
-		const topPieces = await getTopPieces();
-
-		var counter = 0;
-		topPieces.artObjects.forEach(piece => {
-			this.quickArtContainer.childNodes[counter].data = piece;
-			this.quickArtContainer.childNodes[counter].id = piece.objectNumber;
-			this.quickArtContainer.childNodes[counter].setAttribute('src', piece.webImage.url);
-			counter++;
-		})
+		try {
+			const topPieces = await getTopPieces();
+			var counter = 0;
+			topPieces.artObjects.forEach(piece => {
+				this.quickArtContainer.childNodes[counter].data = piece;
+				this.quickArtContainer.childNodes[counter].id = piece.objectNumber;
+				this.quickArtContainer.childNodes[counter].setAttribute('src', piece.webImage.url);
+				counter++;
+			})
+		} catch (e) {
+			console.error(e);
+			const errorPain = {
+				title: "Computer says no"
+			}
+			this.quickArtContainer.childNodes.forEach(node => {
+				node.setAttribute('src', '/static/error.jpg');
+				node.id = 'error';
+				node.data = errorPain;
+			})
+		}	
 	}
 
 	render() {

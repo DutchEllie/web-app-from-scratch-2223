@@ -45,16 +45,29 @@ export class SearchPage extends HTMLElement {
 
 		this.appendChild(this.searchResultsTitle)
 		this.appendChild(this.closer);
-		const res = await getSearchResults(this.searchQuery);
-		res.artObjects.forEach(piece => {
-			const artPieceResult = document.createElement('quickart-element')
-			artPieceResult.data = piece;
-			artPieceResult.id = piece.objectNumber;
-			artPieceResult.setAttribute('src', piece.webImage.url);
-			artPieceResult.returnPath = window.location.hash;
-			// artPieceResult.id = piece.artObject.objectNumber;
-			this.appendChild(artPieceResult);
-		})
+		try {
+			const res = await getSearchResults(this.searchQuery);
+			res.artObjects.forEach(piece => {
+				const artPieceResult = document.createElement('quickart-element')
+				artPieceResult.data = piece;
+				artPieceResult.id = piece.objectNumber;
+				artPieceResult.setAttribute('src', piece.webImage.url);
+				artPieceResult.returnPath = window.location.hash;
+				// artPieceResult.id = piece.artObject.objectNumber;
+				this.appendChild(artPieceResult);
+			})
+		} catch(e) {
+			console.error(e);
+			for (let i = 0; i < 20; i++) {
+				const artPieceResult = document.createElement('quickart-element')
+				// artPieceResult.data = ;
+				artPieceResult.id = 'error';
+				artPieceResult.setAttribute('src', '/static/error.jpg');
+				artPieceResult.returnPath = window.location.hash;
+				// artPieceResult.id = piece.artObject.objectNumber;
+				this.appendChild(artPieceResult);
+			}
+		}
 
 		
 	}
