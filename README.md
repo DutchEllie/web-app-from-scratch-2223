@@ -61,8 +61,23 @@ Waarom dit gebeurt weet ik nog niet, maar ik ben erg blij dat het is opgelost.
 
 Op dinsdag ben ik begonnen met het maken van de diagrammen die we moesten maken.
 Ik heb een wireflow, activity diagram en swimlane diagram gemaakt.
-**Insert images here**
+
+![Wireflow](docs/wireflow.jpg)
 
 Ik ben daarna begonnen met het toevoegen van de verschillende states van de applicatie.
 Vooral belangrijk was het maken van de loading state.
 Momenteel is er weinig indicatie dat de interface aan het laden is op de achtergrond.
+
+Ik heb de loading state toegevoegd.
+Wanneer de pagina laadt worden de art elementen geladen op de pagina.
+Hiervan worden de image sources gezet op een `loading.png` image.
+De Web Components zijn reactive, dus nadat de image geladen is hoef je alleen maar de image source en de title te veranderen naar de juiste image en dan veranderd die gelijk mee.
+
+Ook heb ik de error state toegevoegd.
+Dit kan je bereiken als de fetch naar de API faalt.
+Wanneer dit gebeurt krijg je het volgende te zien:
+
+![Error state](docs/error%20state.png)
+
+Dit is natuurlijk een beetje een grap, maar dit is wel intended behavior.
+
