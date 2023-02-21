@@ -5,10 +5,8 @@ export class QuickArtObject extends HTMLElement {
 	constructor() {
 		super();
 		this.#data = {};
-		// this.shadow = this.attachShadow({mode: 'open'});
 		this.addEventListener('click', this.handleClick);
 		this.imageComponent = document.createElement('img');
-		// this.objectID = this.getAttribute('id');
 		this.titleComponent = document.createElement('p');
 	}
 
@@ -31,6 +29,10 @@ export class QuickArtObject extends HTMLElement {
 
 	connectedCallback() {
 		this.render();
+		this.innerHTML = "";
+		this.appendChild(this.imageComponent);
+		this.appendChild(this.titleComponent);
+		// this.shadow.appendChild(this.styleComponent);
 	}
 
 	static get observedAttributes(){
@@ -55,15 +57,9 @@ export class QuickArtObject extends HTMLElement {
 	}
 
 	async render() {
-		// const quickArt = document.createElement('div');
 		this.className = 'artpiece'
 
 		if (this.data != {}) {
-			// console.log(this.data)
-			// console.trace()
-
-			// this.imageComponent.src = this.data.webImage.url;
-
 			this.imageComponent.alt = this.data.title;
 			this.titleComponent.textContent = this.data.title;
 		} else if (this.objectID) {
@@ -72,14 +68,6 @@ export class QuickArtObject extends HTMLElement {
 			this.imageComponent.alt = fullObject.artObject.title;
 			this.titleComponent.textContent = fullObject.artObject.title;
 		}
-		this.innerHTML = "";
-		this.appendChild(this.imageComponent);
-		this.appendChild(this.titleComponent);
-		// const name = document.createElement('p');
-		// name.textContent = element.title;
-
-		// this.appendChild(name);
-		// console.log(this.data)
 	}
 }
 

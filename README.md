@@ -56,3 +56,13 @@ Wanneer dit gebeurde verloor het de data en kreeg ik errors in de console en in 
 Dit werd opgelost toen ik in de `homepage.js` code de `quickArtContainer` vulde via de `appendChild` methode.
 Eerst deed ik dit via een string literal.
 Waarom dit gebeurt weet ik nog niet, maar ik ben erg blij dat het is opgelost.
+
+### Week 3 Dinsdag - Diagram
+
+Op dinsdag ben ik begonnen met het maken van de diagrammen die we moesten maken.
+Ik heb een wireflow, activity diagram en swimlane diagram gemaakt.
+**Insert images here**
+
+Ik ben daarna begonnen met het toevoegen van de verschillende states van de applicatie.
+Vooral belangrijk was het maken van de loading state.
+Momenteel is er weinig indicatie dat de interface aan het laden is op de achtergrond.

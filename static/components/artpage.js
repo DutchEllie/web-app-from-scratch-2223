@@ -4,32 +4,15 @@ import '../routie.min.js';
 export class ArtPage extends HTMLElement {
 	constructor() {
 		super();
-		// this.shadow = this.attachShadow({mode: 'open'});
-		this.addEventListener('click', (event) => {
-			routie(window.localStorage.getItem('returnpath'))
+
+		this.closer = document.createElement('span');
+		this.closer.className = 'closebutton';
+		this.closer.addEventListener('click', event => {
+			routie(window.localStorage.getItem('returnpath'));
 		})
-		// Set the addEventListener in a timeout, so you can't activate 
-		// the removal before the object is loaded
-		// setTimeout(() => {
-		// 	pageFiller.addEventListener('click', event => {
-		// 		pageFiller.animate([
-		// 			{ opacity: 100 },
-		// 			{ opacity: 0 }
-		// 		], {
-		// 			duration: 500,
-		// 			easing: 'ease-in-out'
-		// 		})
-
-		// 		setTimeout(() => {
-		// 			pageFiller.remove();
-		// 		}, 480);
-		// 	})
-		// }, 480);
-
 		this.artObjectImage = document.createElement('img');
 		this.artObjectTitle = document.createElement('h1');
 		this.artObjectDetails = document.createElement('div');
-		this.artObjectDescription = document.createElement('div');
 
 		this.artObjectLoader = document.createElement('div');
 		this.artObjectLoader.className = 'loading';
@@ -70,9 +53,6 @@ export class ArtPage extends HTMLElement {
 		<p>${res.artObject.description}</p>
 		`
 
-		this.artObjectDescription.innerHTML = 
-		`
-		`
 		try {
 			this.removeChild(this.artObjectLoader);
 			this.removeChild(this.loadingText);
@@ -80,9 +60,9 @@ export class ArtPage extends HTMLElement {
 			console.warn('This dumb bitch is complaining about removing a node that it thinks isn\'t there but it actually is.\n' + e)
 		}
 		this.appendChild(this.artObjectTitle);
+		this.appendChild(this.closer);
 		this.appendChild(this.artObjectImage);
 		this.appendChild(this.artObjectDetails);
-		this.appendChild(this.artObjectDescription);
 	}
 
 	attributeChangedCallback(prop, oldVal, newVal) {

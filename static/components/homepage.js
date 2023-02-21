@@ -12,27 +12,34 @@ export class HomePage extends HTMLElement {
 		this.render();
 	}
 
-	async quickArtContainer() {
-		const container = document.createElement('div');
-		container.className = 'quick-art-container';
-
+	async fetchData() {
 		const topPieces = await getTopPieces();
-		topPieces.artObjects = topPieces.artObjects.slice(0,9);
 
-		topPieces.artObjects.forEach(element => {
-			const quickArt = document.createElement('quickart-element');
-			quickArt.data = element;
-			quickArt.returnPath = '/';
-			quickArt.id = element.objectNumber;
-			quickArt.setAttribute('src', element.webImage.url);
-			container.appendChild(quickArt);
-		});
-		
-		return container;
+		var counter = 0;
+		topPieces.artObjects.forEach(piece => {
+			this.quickArtContainer.childNodes[counter].data = piece;
+			this.quickArtContainer.childNodes[counter].id = piece.objectNumber;
+			this.quickArtContainer.childNodes[counter].setAttribute('src', piece.webImage.url);
+			counter++;
+		})
 	}
 
-	async render() {
-		const quickArt = await this.quickArtContainer();
+	render() {
+		// Create the container
+		this.quickArtContainer = document.createElement('div');
+		this.quickArtContainer.className = 'quick-art-container';
+
+		for (let i = 0; i < 10; i++) {
+			const quickArtObject = document.createElement('quickart-element');
+			quickArtObject.returnPath = '/';
+			quickArtObject.id = '';
+			quickArtObject.setAttribute('src', '/static/loading.png');
+			this.quickArtContainer.appendChild(quickArtObject);
+		}
+
+		// Start fetching the data
+		// This function also changes the data on the objects.
+		this.fetchData();
 
 		this.innerHTML = `
       <div class="homepage animate">
@@ -54,8 +61,10 @@ export class HomePage extends HTMLElement {
         </main>
       </div>
 		`
-		const quickArtContainer = this.querySelector('main > section:first-of-type')
-		quickArtContainer.appendChild(quickArt);
+
+		const DOMquickArtContainer = this.querySelector('main > section:first-of-type');
+		DOMquickArtContainer.appendChild(this.quickArtContainer);
+
 		const searchForm = this.querySelector('#search-form');
 		searchForm.addEventListener("submit", (e) => {
 			e.preventDefault();
