@@ -81,3 +81,9 @@ Wanneer dit gebeurt krijg je het volgende te zien:
 
 Dit is natuurlijk een beetje een grap, maar dit is wel intended behavior.
 
+### Probleem 2 - Die deur
+
+Op maandag en dinsdag van week 3 was de deur op de gang kapot.
+Elke keer dat iemand hem opende maakte hij een hard piepend geluid.
+Omdat de deur zo langzaam sluit duurde dat geluid ook echt heel lang.
+Dit was ontzettend hinderlijk.
