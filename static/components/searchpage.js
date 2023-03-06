@@ -67,13 +67,11 @@ export class SearchPage extends HTMLElement {
 			})
 		} catch(e) {
 			console.error(e);
-			for (let i = 0; i < 20; i++) {
-				const artPieceResult = document.createElement('quickart-element')
-				artPieceResult.id = 'error';
-				artPieceResult.setAttribute('src', '/static/error.jpg');
-				artPieceResult.returnPath = window.location.hash;
-				this.appendChild(artPieceResult);
-			}
+			const artPieceResult = document.createElement('quickart-element')
+			artPieceResult.id = 'error';
+			artPieceResult.setAttribute('src', '/static/error.jpg');
+			artPieceResult.returnPath = window.location.hash;
+			this.appendChild(artPieceResult);
 		}
 
 		this.scrollLock = false;

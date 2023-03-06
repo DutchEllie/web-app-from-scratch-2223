@@ -94,3 +94,42 @@ Ik heb in week 4 de code een beetje opgeschoond.
 Er waren een aantal functies die niks deden of op een andere manier redundant waren.
 Ook was er voldoende code dat gewoon niet precies deed wat het moest doen of niet werkte.
 Dat heb ik opgeruimd en nu is het beter.
+
+#### Infinite scrolling search
+
+Voor de search pagina wil ik meer objecten kunnen laden wanneer je verder scrollt op de pagina.
+Om de experience seemless te maken wil ik dit graag bereiken door middel van infinite scrolling, in plaats van knopjes.
+Daarvoor heb ik aan het searchPage object een functie toegevoegd om de data van de API op te halen, die eerder in de `render()` functie stond.
+
+```js
+async update() {
+  // fetch data
+}
+
+render() {
+  this.innerHTML = "";
+  this.update();
+}
+```
+
+De reden dat ik dit heb moeten doen is omdat de scroll eventListener (hieronder te zien) niet de `render()` functie kan callen.
+Die functie moet namelijk de `innerHTML` leegmaken, omdat de pagina anders niet reactive is.
+De reactive functie wordt niet gebruikt, maar dat weghalen zou de website componenten inconsistent maken.
+
+```js
+window.addEventListener("scroll", () => {
+  if (this.scrollLock) {
+    return;
+  }
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+    this.searchPageNumber += 1;
+    this.scrollLock = true;
+    this.update();
+  }
+});
+```
+
+Zoals te zien is er ook een `scrollLock` variabele.
+Wanneer de scroll eventListener wordt aangeroepen zal deze de pagina direct hoger maken en de `update()` functie aanroepen, en omdat deze async is returnt de functie direct.
+Als er in die tijd weer wordt gescrollt (bijvoorbeeld door scroll inertia) dan wordt de eventListener nogmaals aangeroepen en gebeurt dit weer.
+Door een lock toe te voegen op de eventListener dan kan de search pagina niet te veel verhoogt worden.
