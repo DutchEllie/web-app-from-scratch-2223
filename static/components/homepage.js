@@ -1,11 +1,9 @@
 import { getTopPieces } from "../api.js";
-import { QuickArtObject} from './quickartobject.js'
 import '../routie.min.js';
 
 export class HomePage extends HTMLElement {
 	constructor() {
 		super();
-		// this.shadow = this.attachShadow({ mode: 'open' });
 	}
 
 	connectedCallback() {
@@ -52,6 +50,7 @@ export class HomePage extends HTMLElement {
 		// This function also changes the data on the objects.
 		this.fetchData();
 
+		// Doing this is easier and cleaner than using Javascript objects
 		this.innerHTML = `
       <div class="homepage animate">
         <header>

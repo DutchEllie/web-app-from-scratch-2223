@@ -28,24 +28,21 @@ export class QuickArtObject extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.render();
 		this.innerHTML = "";
+		this.render();
 		this.appendChild(this.imageComponent);
 		this.appendChild(this.titleComponent);
-		// this.shadow.appendChild(this.styleComponent);
 	}
 
+	// This is just how the documentation says it works
+	// https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks
 	static get observedAttributes(){
 		return ['id', 'src'];
 	}
 
 	attributeChangedCallback(prop, oldVal, newVal) {
-		if (prop === 'id') {
-			this.objectID = newVal;
-			// this.render();
-		} else if (prop === 'src') {
+		if (prop === 'src') {
 			this.imageComponent.src = newVal;
-			// this.render();
 		}
 	}
 
@@ -70,5 +67,3 @@ export class QuickArtObject extends HTMLElement {
 		}
 	}
 }
-
-customElements.define('quickart-element', QuickArtObject);
