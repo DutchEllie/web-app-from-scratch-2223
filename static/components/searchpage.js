@@ -7,6 +7,8 @@ export class SearchPage extends HTMLElement {
 
 		this.searchResultsTitle = document.createElement('h1');
 		this.searchResultsTitle.textContent = 'Search Results'
+		this.searchPageNumber = 0;
+		this.scrollLock = false;
 
 		this.closer = document.createElement('span');
 		this.closer.className = 'closebutton';
@@ -14,6 +16,16 @@ export class SearchPage extends HTMLElement {
 			routie('/');
 		})
 
+		window.addEventListener('scroll', () => {
+			if(this.scrollLock){
+				return;
+			}
+			if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+				this.searchPageNumber += 1;
+				this.scrollLock = true;
+				this.update();
+			}
+		})
 		// Set searchQuery if it is set. Default is none.
 		this.searchQuery = this.hasAttribute('data-searchquery') 
 			? this.getAttribute('data-searchquery')
@@ -38,21 +50,20 @@ export class SearchPage extends HTMLElement {
 		this.render();
 	}
 
-	async render() {
-		this.innerHTML = "";
-
-		// Did you know that you can't edit the DOM in the constructor?
-		this.appendChild(this.searchResultsTitle)
-		this.appendChild(this.closer);
+	async update() {
 		try {
-			const res = await getSearchResults(this.searchQuery);
+			const res = await getSearchResults(this.searchQuery, this.searchPageNumber);
 			res.artObjects.forEach(piece => {
-				const artPieceResult = document.createElement('quickart-element')
-				artPieceResult.data = piece;
-				artPieceResult.id = piece.objectNumber;
-				artPieceResult.setAttribute('src', piece.webImage.url);
-				artPieceResult.returnPath = window.location.hash;
-				this.appendChild(artPieceResult);
+				try {
+					const artPieceResult = document.createElement('quickart-element')
+					artPieceResult.data = piece;
+					artPieceResult.id = piece.objectNumber;
+					artPieceResult.setAttribute('src', piece.webImage.url ?? '');
+					artPieceResult.returnPath = window.location.hash;
+					this.appendChild(artPieceResult);
+				} catch (e) {
+					return
+				}
 			})
 		} catch(e) {
 			console.error(e);
@@ -65,6 +76,16 @@ export class SearchPage extends HTMLElement {
 			}
 		}
 
-		
+		this.scrollLock = false;
+	}
+
+	async render() {
+		this.innerHTML = "";
+
+		this.update();
+
+		// Did you know that you can't edit the DOM in the constructor?
+		this.appendChild(this.searchResultsTitle)
+		this.appendChild(this.closer);
 	}
 }

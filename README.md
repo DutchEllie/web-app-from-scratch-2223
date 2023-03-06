@@ -87,3 +87,10 @@ Op maandag en dinsdag van week 3 was de deur op de gang kapot.
 Elke keer dat iemand hem opende maakte hij een hard piepend geluid.
 Omdat de deur zo langzaam sluit duurde dat geluid ook echt heel lang.
 Dit was ontzettend hinderlijk.
+
+### Week 4 Maandag - Refactoring
+
+Ik heb in week 4 de code een beetje opgeschoond.
+Er waren een aantal functies die niks deden of op een andere manier redundant waren.
+Ook was er voldoende code dat gewoon niet precies deed wat het moest doen of niet werkte.
+Dat heb ik opgeruimd en nu is het beter.

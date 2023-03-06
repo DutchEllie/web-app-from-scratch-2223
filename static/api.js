@@ -21,11 +21,12 @@ export async function getObjectFull(objnum) {
 	return data;
 }
 
-export async function getSearchResults(query) {
+export async function getSearchResults(query, pageNumber) {
 	const res = await fetch('https://www.rijksmuseum.nl/api/nl/collection?' + new URLSearchParams({
 		// Insert key here before running
 		key: key,
-		q: query
+		q: query,
+		p: pageNumber
 	}));
 
 	const data = await res.json();
