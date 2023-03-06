@@ -41,7 +41,9 @@ export class QuickArtObject extends HTMLElement {
 	}
 
 	attributeChangedCallback(prop, oldVal, newVal) {
-		if (prop === 'src') {
+		if (prop === 'id') {
+			this.objectID = newVal;
+		} else if (prop === 'src') {
 			this.imageComponent.src = newVal;
 		}
 	}

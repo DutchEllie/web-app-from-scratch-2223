@@ -33,6 +33,12 @@ export class ArtPage extends HTMLElement {
 
 		try {
 			const res = await getObjectFull(this.objectID)
+			
+			// For some reason, their API is shite
+			// Not really surprising actually
+			// Anyway, they sometimes for no reason don't include an image in the
+			// full object details, while they did in the search results...
+			// So we literally have to try/catch their stupidity.
 			try {
 				this.artObjectImage.src = res.artObject.webImage.url;
 			} catch (e) {
@@ -53,7 +59,6 @@ export class ArtPage extends HTMLElement {
 			<h3>Description</h3>
 			<p>${res.artObject.description}</p>
 			`
-
 		} catch(e) {
 			console.error(e);
 			this.artObjectTitle.textContent = "Error loading data";
@@ -68,6 +73,9 @@ export class ArtPage extends HTMLElement {
 			</p>
 			`
 		}
+
+		// This dumb bitch is complaining about shit.
+		// Just catch this and ignore.
 		try {
 			this.removeChild(this.artObjectLoader);
 			this.removeChild(this.loadingText);
@@ -83,6 +91,9 @@ export class ArtPage extends HTMLElement {
 	attributeChangedCallback(prop, oldVal, newVal) {
 		if (prop === 'id') {
 			this.objectID = newVal;
+
+			// Calling render here makes it more reactive.
+			// This isn:t strictly needed and we don't use it, but why leave it out?
 			this.render();
 		}
 	}
