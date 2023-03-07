@@ -16,6 +16,7 @@ You can search for any art in their collection and view it.
       - [Probleem 2 - Die deur](#probleem-2---die-deur)
     - [Week 4 Maandag - Refactoring](#week-4-maandag---refactoring)
       - [Infinite scrolling search](#infinite-scrolling-search)
+  - [Detailed documentation](#detailed-documentation)
 
 **Preview**:
 
@@ -171,3 +172,30 @@ Zoals te zien is er ook een `scrollLock` variabele.
 Wanneer de scroll eventListener wordt aangeroepen zal deze de pagina direct hoger maken en de `update()` functie aanroepen, en omdat deze async is returnt de functie direct.
 Als er in die tijd weer wordt gescrollt (bijvoorbeeld door scroll inertia) dan wordt de eventListener nogmaals aangeroepen en gebeurt dit weer.
 Door een lock toe te voegen op de eventListener dan kan de search pagina niet te veel verhoogt worden.
+
+## Detailed documentation
+
+This is a code snippet from the `api.js` file.
+It is very similar to the the other functions in this file, so it's not needed to explain all of them.
+
+Personally, I don't see a big reason why explaining this code is even functional at all.
+It's necessary of course.
+
+`getSearchResults()` simply awaits a fetch from the API, built up from a URL string and `URLSearchParams`.
+This is done because it's easy to read and format.
+This is then converted to JSON.
+
+```js
+export async function getSearchResults(query, pageNumber) {
+	const res = await fetch('https://www.rijksmuseum.nl/api/nl/collection?' + new URLSearchParams({
+		// Insert key here before running
+		key: key,
+		q: query,
+		p: pageNumber
+	}));
+
+	const data = await res.json();
+
+	return data;
+}
+```

@@ -55,12 +55,8 @@ export class HomePage extends HTMLElement {
       <div class="homepage animate">
         <header>
           <h1>Rijksmuseum</h1>
-          <hr />
         </header>
         <main>
-          <section>
-            <h2>Quick art</h2>
-          </section>
           <section>
             <h2>Search</h2>
             <form id="search-form">
@@ -68,11 +64,14 @@ export class HomePage extends HTMLElement {
               <input type="submit" />
             </form>
           </section>
+          <section>
+            <h2>Quick art</h2>
+          </section>
         </main>
       </div>
 		`
 
-		const DOMquickArtContainer = this.querySelector('main > section:first-of-type');
+		const DOMquickArtContainer = this.querySelector('main > section:nth-of-type(2)');
 		DOMquickArtContainer.appendChild(this.quickArtContainer);
 
 		const searchForm = this.querySelector('#search-form');
