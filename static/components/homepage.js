@@ -57,6 +57,9 @@ export class HomePage extends HTMLElement {
           <h1>Rijksmuseum</h1>
         </header>
         <main>
+					<p>
+					Beleef nu de wonderen van het Rijksmuseum via het internet!
+					</p>
           <section>
             <h2>Search</h2>
             <form id="search-form">
