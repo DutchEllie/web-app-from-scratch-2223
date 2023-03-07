@@ -1,6 +1,6 @@
 # Web App From Scratch - Rijksmuseum App
 
-[Live link](https://web.quenten.nl)
+[Live link](https://web.quenten.nl)  
 This is a webapp for school that uses the [Rijksmuseum API](https://data.rijksmuseum.nl/object-metadata/api/) to display art.
 You can search for any art in their collection and view it.
 
