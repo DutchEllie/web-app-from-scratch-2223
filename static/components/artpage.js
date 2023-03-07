@@ -56,8 +56,12 @@ export class ArtPage extends HTMLElement {
 			${res.artObject.principalOrFirstMaker ? '<li>Artist: ' + res.artObject.principalOrFirstMaker + '</li>' : ''} 
 			${res.artObject.productionPlaces[0] ? '<li>Location: ' + res.artObject.productionPlaces[0] + '</li>' : ''} 
 			</ul>
-			<h3>Description</h3>
-			<p>${res.artObject.description}</p>
+			${res.artObject.description ? 
+				`<h3>Description</h3>
+				<p>${res.artObject.description}</p>`
+				:
+				''
+			}
 			`
 		} catch(e) {
 			console.error(e);
