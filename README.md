@@ -1,9 +1,48 @@
 # Web App From Scratch - Rijksmuseum App
 
-This is an app for school that uses the Rijksmuseum API to display art.
-It's a web app (single page application).
+[Live link](https://web.quenten.nl)
+This is a webapp for school that uses the [Rijksmuseum API](https://data.rijksmuseum.nl/object-metadata/api/) to display art.
+You can search for any art in their collection and view it.
 
-## Week 2 - Begin
+## Table of Contents
+
+- [Web App From Scratch - Rijksmuseum App](#web-app-from-scratch---rijksmuseum-app)
+  - [Table of Contents](#table-of-contents)
+  - [Log](#log)
+    - [Week 2 - Begin](#week-2---begin)
+    - [Week 3 Maandag - Refactoring met Routie en Web Components](#week-3-maandag---refactoring-met-routie-en-web-components)
+      - [Probleem 1 - Quick Art Object](#probleem-1---quick-art-object)
+    - [Week 3 Dinsdag - Diagram](#week-3-dinsdag---diagram)
+      - [Probleem 2 - Die deur](#probleem-2---die-deur)
+    - [Week 4 Maandag - Refactoring](#week-4-maandag---refactoring)
+      - [Infinite scrolling search](#infinite-scrolling-search)
+
+
+**Preview**:
+
+![Fancy page!](docs/fancy%20page%20no.png)
+
+**Installation**:
+
+To install, download all of the files as you see it (if you need to be taught how to do that, bless your heart).
+Then place all of the files in the root of your webserver.
+
+**Features**:
+
+- Displays image directly from the API
+- Lightweight
+- Single page application with Web Components
+- Reactive components!
+
+**Tasks**:
+
+- [x] Fast
+- [ ] Better styling
+- [ ] Use emoji in README
+
+## Log
+
+### Week 2 - Begin
 
 Ik heb gekozen voor de Rijksmuseum opdracht omdat dit een leuke opdracht leek.
 Er moet een beetje design in en je kan leuke dingen doen met Javascript hiervoor.
@@ -23,7 +62,7 @@ Zo hoeft de zogehete `pagefiller` `<div>` niet door Javascript toegevoegd te wor
 
 Dit is iets dat ik in week 3 wil gaan aanpassen, als we gaan refactoren.
 
-## Week 3 Maandag - Refactoring met Routie en Web Components
+### Week 3 Maandag - Refactoring met Routie en Web Components
 
 In week 3 ben ik op maandag begonnen met het herschrijven van de code op bepaalde plekken.
 Ik heb weinig veranderd aan de HTML, want dat was allemaal wel best zo.
@@ -44,7 +83,7 @@ Er waren weinig grote hindernissen waar ik tegenaan ben gelopen, naast het probl
 
 Web Components zijn wel geinig.
 
-### Probleem 1 - Quick Art Object
+#### Probleem 1 - Quick Art Object
 
 Het QuickArtObject object is een web componentn en neemt als data waarde de response uit de API in.
 Wanneer de data variable word geassigned dan wordt de setter functie aangeroepen.
@@ -81,7 +120,7 @@ Wanneer dit gebeurt krijg je het volgende te zien:
 
 Dit is natuurlijk een beetje een grap, maar dit is wel intended behavior.
 
-### Probleem 2 - Die deur
+#### Probleem 2 - Die deur
 
 Op maandag en dinsdag van week 3 was de deur op de gang kapot.
 Elke keer dat iemand hem opende maakte hij een hard piepend geluid.
