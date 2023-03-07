@@ -52,9 +52,9 @@ export class ArtPage extends HTMLElement {
 			`
 			<h3>Information</h3>
 			<ul>
-			<li>Title:    ${res.artObject.title}</li>
-			<li>Artist:   ${res.artObject.principalOrFirstMaker}</li>
-			<li>Location: ${res.artObject.productionPlaces[0]}</li>
+			${res.artObject.title ? '<li>Title: ' + res.artObject.title + '</li>' : ''} 
+			${res.artObject.principalOrFirstMaker ? '<li>Artist: ' + res.artObject.principalOrFirstMaker + '</li>' : ''} 
+			${res.artObject.productionPlaces[0] ? '<li>Location: ' + res.artObject.productionPlaces[0] + '</li>' : ''} 
 			</ul>
 			<h3>Description</h3>
 			<p>${res.artObject.description}</p>

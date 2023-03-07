@@ -17,7 +17,6 @@ You can search for any art in their collection and view it.
     - [Week 4 Maandag - Refactoring](#week-4-maandag---refactoring)
       - [Infinite scrolling search](#infinite-scrolling-search)
 
-
 **Preview**:
 
 ![Fancy page!](docs/fancy%20page%20no.png)
